@@ -1,0 +1,39 @@
+Historia de la Inteligencia Artificial
+
+La Inteligencia Artificial (IA) es un campo de la informática que busca crear máquinas capaces de imitar el comportamiento inteligente humano.
+
+Orígenes (1950-1969):
+- 1950: Alan Turing propone el "Test de Turing" para evaluar la inteligencia de las máquinas
+- 1956: Conferencia de Dartmouth, donde se acuña el término "Inteligencia Artificial"
+- 1964: Joseph Weizenbaum crea ELIZA, uno de los primeros chatbots
+
+Era del Conocimiento (1970-1989):
+- 1972: Desarrollo del primer sistema experto MYCIN
+- 1976: Surgimiento de los sistemas basados en reglas
+- 1980: Auge de los sistemas expertos en medicina y química
+
+Aprendizaje Automático (1990-2010):
+- 1997: Deep Blue de IBM vence al campeón mundial de ajedrez
+- 2000: Robots autónomos como ASIMO de Honda
+- 2006: Surgimiento del Deep Learning moderno
+
+Era del Deep Learning (2011-presente):
+- 2011: Watson de IBM gana Jeopardy!
+- 2012: Avances significativos en reconocimiento de imágenes
+- 2016: AlphaGo vence al campeón mundial de Go
+- 2018: Transformers revolucionan el procesamiento del lenguaje natural
+- 2022: ChatGPT demuestra capacidades avanzadas de conversación
+
+Aplicaciones Actuales:
+1. Asistentes virtuales (Siri, Alexa)
+2. Vehículos autónomos
+3. Diagnóstico médico
+4. Traducción automática
+5. Recomendaciones personalizadas
+
+Desafíos Éticos:
+- Privacidad y seguridad de datos
+- Sesgos en los algoritmos
+- Impacto en el empleo
+- Transparencia y explicabilidad
+- Responsabilidad en la toma de decisiones
