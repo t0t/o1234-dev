@@ -13,8 +13,7 @@ document.addEventListener('DOMContentLoaded', function() {
             loading.classList.remove('hidden');
             responseArea.classList.add('hidden');
 
-            // Hacer la petición
-            const res = await fetch('/ask', {
+            const response = await fetch('/ask', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -22,21 +21,50 @@ document.addEventListener('DOMContentLoaded', function() {
                 body: JSON.stringify({ question: question })
             });
 
-            // Procesar respuesta
-            const data = await res.json();
+            const responseArea = document.getElementById('response');
+            responseArea.innerHTML = '<div class="animate-pulse">Procesando pregunta...</div>';
+
+            if (!response.ok) {
+                const error = await response.json();
+                throw new Error(error.detail || 'Error en la solicitud');
+            }
+
+            const data = await response.json();
             
-            // Formatear la respuesta (convertir saltos de línea en <br>)
-            const formattedResponse = data.response.replace(/\n/g, '<br>');
-            
+            if (data.response) {
+                // Convertir saltos de línea en <br> y formatear listas
+                const formattedResponse = data.response
+                    .replace(/\n\n/g, '<br><br>')
+                    .replace(/\n-/g, '<br>•')
+                    .replace(/\n(\d+)\./g, '<br>$1.');
+                
+                responseArea.innerHTML = `<div class="response-content">${formattedResponse}</div>`;
+            } else {
+                throw new Error('Respuesta vacía del servidor');
+            }
+
             // Mostrar la respuesta
-            response.innerHTML = formattedResponse;
             responseArea.classList.remove('hidden');
             responseArea.classList.add('fade-in');
 
         } catch (error) {
+            const responseArea = document.getElementById('response');
+            responseArea.innerHTML = `
+                <div class="bg-red-50 border-l-4 border-red-400 p-4 mb-4">
+                    <div class="flex">
+                        <div class="flex-shrink-0">
+                            <svg class="h-5 w-5 text-red-400" viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"/>
+                            </svg>
+                        </div>
+                        <div class="ml-3">
+                            <p class="text-sm text-red-700">
+                                ${error.message}
+                            </p>
+                        </div>
+                    </div>
+                </div>`;
             console.error('Error:', error);
-            response.innerHTML = 'Lo siento, ha ocurrido un error al procesar tu pregunta.';
-            responseArea.classList.remove('hidden');
         } finally {
             loading.classList.add('hidden');
         }

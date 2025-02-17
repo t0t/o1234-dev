@@ -118,9 +118,32 @@ async def health_check():
 
 @app.post("/ask")
 async def ask_question(query: Query):
+    """Endpoint para procesar preguntas."""
     try:
+        # Verificar que qa_chain está inicializado
+        if not qa_chain:
+            logger.error("qa_chain no está inicializado")
+            raise HTTPException(
+                status_code=500,
+                detail="El sistema no está listo. Por favor, espera unos momentos."
+            )
+
+        # Validar la pregunta
+        if not query.question or len(query.question.strip()) == 0:
+            raise HTTPException(
+                status_code=400,
+                detail="La pregunta no puede estar vacía"
+            )
+
         # Obtener respuesta con documentos fuente
         result = qa_chain({"query": query.question})
+        
+        if not result or "result" not in result:
+            logger.error("No se obtuvo respuesta del modelo")
+            raise HTTPException(
+                status_code=500,
+                detail="No se pudo generar una respuesta. Por favor, intenta de nuevo."
+            )
         
         # Formatear la respuesta
         response = result["result"]
@@ -133,9 +156,12 @@ async def ask_question(query: Query):
                     response += f"\n- {doc.metadata['source']}"
         
         return {"response": response}
+    except HTTPException as he:
+        logger.error(f"Error HTTP: {str(he)}")
+        raise he
     except Exception as e:
         logger.error(f"Error al procesar la pregunta: {str(e)}")
-        raise HTTPException(status_code=500, detail=str(e))
+        return {"response": "Lo siento, ha ocurrido un error al procesar tu pregunta. Por favor, intenta de nuevo en unos momentos."}
 
 if __name__ == "__main__":
     import uvicorn
