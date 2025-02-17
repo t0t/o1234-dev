@@ -25,10 +25,12 @@ logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 # Crear la aplicación FastAPI
-app = FastAPI(title="Q&A App")
+app = FastAPI()
 
 # Montar archivos estáticos
-app.mount("/static", StaticFiles(directory=str(STATIC_DIR)), name="static")
+app.mount("/css", StaticFiles(directory=str(STATIC_DIR / "css")), name="css")
+app.mount("/js", StaticFiles(directory=str(STATIC_DIR / "js")), name="js")
+app.mount("/img", StaticFiles(directory=str(STATIC_DIR / "img")), name="img")
 
 class Query(BaseModel):
     question: str
