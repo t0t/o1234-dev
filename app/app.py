@@ -72,6 +72,11 @@ async def startup_event():
 async def read_root():
     return FileResponse(str(STATIC_DIR / "index.html"))
 
+# Endpoint para health check
+@app.get("/health")
+async def health_check():
+    return {"status": "ok"}
+
 @app.post("/ask")
 async def ask_question(query: Query):
     try:
