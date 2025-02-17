@@ -1,16 +1,17 @@
 ---
-title: Documentos-QA
+title: O1234 Asistente de Documentación
 emoji: 📚
-colorFrom: blue
-colorTo: indigo
+colorFrom: indigo
+colorTo: blue
 sdk: docker
 pinned: false
 app_port: 7860
+fullscreen: true
 ---
 
-# Documentos-QA
+# O1234 Asistente de Documentación
 
-Una aplicación web que permite hacer preguntas sobre documentos usando un modelo de lenguaje de código abierto.
+Este espacio proporciona un asistente inteligente para consultar documentación sobre O1234.
 
 ## 🌟 Características
 
