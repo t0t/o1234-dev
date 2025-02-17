@@ -4,14 +4,20 @@ from fastapi.responses import FileResponse
 from pydantic import BaseModel
 import logging
 from pathlib import Path
+from transformers import pipeline
 
-from langchain.chains import RetrievalQA
 from langchain_community.embeddings import HuggingFaceEmbeddings
 from langchain_community.vectorstores import Chroma
-from transformers import pipeline
+from langchain.chains import RetrievalQA
 from langchain.llms import HuggingFacePipeline
 
-from app.config import STATIC_DIR, CHROMA_DIR, MODEL_ID, MAX_LENGTH, TEMPERATURE
+from app.config import (
+    STATIC_DIR,
+    CHROMA_DIR,
+    MODEL_ID,
+    MAX_LENGTH,
+    TEMPERATURE,
+)
 
 # Configurar logging
 logging.basicConfig(level=logging.INFO)

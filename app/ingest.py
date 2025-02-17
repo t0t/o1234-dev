@@ -2,16 +2,16 @@ import logging
 from pathlib import Path
 from typing import List
 
-from langchain.document_loaders import (
+from langchain_community.document_loaders import (
     PyPDFLoader,
     TextLoader,
     UnstructuredImageLoader,
 )
 from langchain.text_splitter import RecursiveCharacterTextSplitter
-from langchain.embeddings import HuggingFaceEmbeddings
-from langchain.vectorstores import Chroma
+from langchain_community.embeddings import HuggingFaceEmbeddings
+from langchain_community.vectorstores import Chroma
 
-from config import CHROMA_DIR, DOCUMENTS_DIR
+from app.config import CHROMA_DIR, DOCUMENTS_DIR
 
 # Configurar logging
 logging.basicConfig(level=logging.INFO)
