@@ -29,51 +29,66 @@ def load_document(file_path: Path):
     suffix = file_path.suffix.lower()
     try:
         if suffix == '.pdf':
+            logger.info(f"Cargando PDF: {file_path}")
             loader = PyPDFLoader(str(file_path))
+            pages = loader.load()
+            for i, page in enumerate(pages):
+                logger.info(f"Contenido de la página {i+1}:\n{page.page_content[:500]}...")
+            return pages
         elif suffix == '.txt':
+            logger.info(f"Cargando TXT: {file_path}")
             loader = TextLoader(str(file_path))
+            return loader.load()
         elif suffix in ['.jpg', '.jpeg', '.png']:
+            logger.info(f"Cargando imagen: {file_path}")
             loader = UnstructuredImageLoader(str(file_path))
+            return loader.load()
         else:
             logger.warning(f"Tipo de archivo no soportado: {suffix}")
             return []
         
-        return loader.load()
     except Exception as e:
         logger.error(f"Error al cargar {file_path}: {str(e)}")
         return []
 
 def process_documents() -> None:
     """Procesa todos los documentos en el directorio de documentos."""
-    # Inicializar el modelo de embeddings
-    embeddings = HuggingFaceEmbeddings(
-        model_name="sentence-transformers/all-MiniLM-L6-v2",
-        model_kwargs={'device': 'cpu'}
-    )
+    try:
+        # Inicializar el modelo de embeddings
+        embeddings = HuggingFaceEmbeddings(
+            model_name="sentence-transformers/all-MiniLM-L6-v2",
+            model_kwargs={'device': 'cpu'}
+        )
+        
+        # Cargar todos los documentos
+        documents = []
+        for file_path in DOCUMENTS_DIR.glob('*.*'):
+            if file_path.name != '.gitkeep':
+                docs = load_document(file_path)
+                if docs:
+                    logger.info(f"Documento cargado exitosamente: {file_path}")
+                    documents.extend(docs)
 
-    # Cargar todos los documentos
-    documents = []
-    for file_path in DOCUMENTS_DIR.glob("**/*"):
-        if file_path.is_file():
-            logger.info(f"Procesando: {file_path}")
-            docs = load_document(file_path)
-            documents.extend(docs)
+        if not documents:
+            logger.warning("No se encontraron documentos para procesar")
+            return
 
-    if not documents:
-        logger.warning("No se encontraron documentos para procesar")
-        return
+        # Dividir documentos en chunks
+        texts = text_splitter.split_documents(documents)
+        logger.info(f"Documentos divididos en {len(texts)} chunks")
 
-    # Dividir documentos en chunks
-    texts = text_splitter.split_documents(documents)
-    logger.info(f"Creados {len(texts)} chunks de texto")
+        # Crear o actualizar la base de datos vectorial
+        vectorstore = Chroma.from_documents(
+            documents=texts,
+            embedding=embeddings,
+            persist_directory=str(CHROMA_DIR)
+        )
+        vectorstore.persist()
+        logger.info("Base de datos vectorial actualizada exitosamente")
 
-    # Crear o actualizar la base de datos vectorial
-    Chroma.from_documents(
-        documents=texts,
-        embedding=embeddings,
-        persist_directory=str(CHROMA_DIR)
-    )
-    logger.info(f"Base de datos vectorial creada en {CHROMA_DIR}")
+    except Exception as e:
+        logger.error(f"Error durante el procesamiento: {str(e)}")
+        raise
 
 if __name__ == "__main__":
     process_documents()
