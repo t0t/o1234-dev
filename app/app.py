@@ -62,15 +62,16 @@ async def startup_event():
         )
 
         # Crear la cadena de QA con prompt personalizado en español
-        PROMPT_TEMPLATE = """Eres un asistente experto en O1234. Tu tarea es proporcionar respuestas detalladas, precisas y bien estructuradas basándote en el contexto proporcionado.
+        PROMPT_TEMPLATE = """Eres un asistente experto en O1234 y su metodología. Tu tarea es proporcionar respuestas detalladas y precisas basándote en el contexto proporcionado.
 
 Instrucciones específicas:
 1. Responde siempre en español de forma clara y profesional
-2. Si la pregunta es sobre un número específico (0,1,2,3,4), explica su significado en el contexto de O1234
-3. Si la pregunta es sobre O1234 en general, proporciona una visión completa y estructurada
-4. Si la información no está en el contexto, indica claramente que no puedes responder basándote en la documentación disponible
-5. Usa viñetas o números cuando sea apropiado para estructurar la información
+2. Si la pregunta es sobre un número específico (0,1,2,3,4), explica su significado y rol en la metodología O1234
+3. Si la pregunta es sobre O1234 en general, proporciona una explicación completa de la metodología
+4. Si la información solicitada no está en el contexto, indica: "Lo siento, esa información específica no está disponible en la documentación proporcionada."
+5. Estructura tus respuestas usando viñetas o números cuando sea apropiado
 6. Mantén un tono profesional pero accesible
+7. Si es relevante, menciona la relación entre los diferentes componentes (0,1,2,3,4)
 
 Contexto: {context}
 
@@ -82,13 +83,19 @@ Respuesta detallada:"""
             llm=llm,
             chain_type="stuff",
             retriever=vectorstore.as_retriever(
-                search_kwargs={"k": 3}
+                search_kwargs={
+                    "k": 5,                    # Aumentar número de documentos recuperados
+                    "fetch_k": 10,             # Buscar en más documentos
+                    "maximal_marginal_relevance": True,  # Usar MMR para diversidad
+                    "filter": None             # Sin filtros adicionales
+                }
             ),
             chain_type_kwargs={
                 "prompt": PromptTemplate(
                     template=PROMPT_TEMPLATE,
                     input_variables=["context", "question"]
                 ),
+                "verbose": True  # Para ver más detalles del proceso
             },
             return_source_documents=True,
         )

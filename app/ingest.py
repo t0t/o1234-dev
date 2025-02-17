@@ -19,9 +19,10 @@ logger = logging.getLogger(__name__)
 
 # Configurar el text splitter
 text_splitter = RecursiveCharacterTextSplitter(
-    chunk_size=500,
-    chunk_overlap=50,
+    chunk_size=1000,      # Aumentado para capturar más contexto
+    chunk_overlap=200,    # Aumentado para mejor continuidad
     length_function=len,
+    separators=["\n\n", "\n", " ", ""]  # Priorizar división por párrafos
 )
 
 def load_document(file_path: Path):
