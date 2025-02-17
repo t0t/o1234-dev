@@ -1,3 +1,13 @@
+---
+title: Documentos Qa
+emoji: 🌍
+colorFrom: pink
+colorTo: blue
+sdk: docker
+pinned: false
+license: apache-2.0
+---
+
 # Asistente de Documentos con LangChain y FastAPI
 
 Esta aplicación permite hacer preguntas sobre tus documentos usando un modelo de lenguaje open source y una base de datos vectorial local.
@@ -82,3 +92,5 @@ git push space main
 ## Soporte
 
 Si encuentras algún problema, por favor abre un issue en el repositorio.
+
+Para más información sobre la configuración de Spaces, visita: https://huggingface.co/docs/hub/spaces-config-reference
