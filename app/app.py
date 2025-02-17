@@ -109,11 +109,12 @@ Respuesta detallada:"""
 
 @app.get("/")
 async def read_root():
+    """Servir la página principal."""
     return FileResponse(str(STATIC_DIR / "index.html"))
 
-# Endpoint para health check
 @app.get("/health")
 async def health_check():
+    """Endpoint para health check."""
     return {"status": "ok"}
 
 @app.post("/ask")
