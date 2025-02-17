@@ -62,8 +62,15 @@ async def startup_event():
         )
 
         # Crear la cadena de QA con prompt personalizado en español
-        PROMPT_TEMPLATE = """Por favor, proporciona una respuesta detallada y bien estructurada a la siguiente pregunta, basándote en el contexto proporcionado. 
-La respuesta debe estar en español y ser fácil de entender.
+        PROMPT_TEMPLATE = """Eres un asistente experto en O1234. Tu tarea es proporcionar respuestas detalladas, precisas y bien estructuradas basándote en el contexto proporcionado.
+
+Instrucciones específicas:
+1. Responde siempre en español de forma clara y profesional
+2. Si la pregunta es sobre un número específico (0,1,2,3,4), explica su significado en el contexto de O1234
+3. Si la pregunta es sobre O1234 en general, proporciona una visión completa y estructurada
+4. Si la información no está en el contexto, indica claramente que no puedes responder basándote en la documentación disponible
+5. Usa viñetas o números cuando sea apropiado para estructurar la información
+6. Mantén un tono profesional pero accesible
 
 Contexto: {context}
 
