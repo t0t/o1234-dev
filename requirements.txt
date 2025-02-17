@@ -1,5 +1,5 @@
 langchain-community==0.0.13
-langchain==0.0.130
+langchain==0.0.350
 chromadb==0.4.18
 fastapi==0.109.0
 uvicorn==0.27.0
@@ -7,8 +7,9 @@ python-multipart==0.0.6
 transformers==4.36.2
 sentence-transformers==2.2.2
 huggingface-hub==0.19.4
-torch==2.2.2
+torch==2.2.0
 pypdf==3.17.1
-pydantic==2.5.3
+pydantic<2.0.0
 typing-extensions==4.9.0
 python-dotenv==1.0.0
+unstructured==0.11.2
