@@ -8,31 +8,48 @@ pinned: false
 license: apache-2.0
 ---
 
-# Asistente de Documentos con LangChain y FastAPI
+# Documentos-QA 📚
 
-Esta aplicación permite hacer preguntas sobre tus documentos usando un modelo de lenguaje open source y una base de datos vectorial local.
+Una aplicación web que permite hacer preguntas sobre documentos usando un modelo de lenguaje de código abierto.
 
-## Características
+## 🌟 Características
 
-- 🚀 Backend con FastAPI
-- 💾 Base de datos vectorial local con Chroma
-- 🤖 Modelo de lenguaje open source (flan-alpaca-large)
-- 📱 Frontend responsive con HTML5 y CSS Grid
-- 🔄 Sistema de routing y componentes
-- 🎨 Diseño moderno y accesible
+- Interfaz web moderna y responsive
+- Procesamiento de documentos PDF y texto
+- Búsqueda semántica usando embeddings
+- Modelo de lenguaje de código abierto (flan-alpaca-large)
+- Soporte para temas claro/oscuro
+- Interfaz en español
 
-## Requisitos
+## 🛠️ Tecnologías
 
-- Python 3.8 o superior
-- pip (gestor de paquetes de Python)
-- Aproximadamente 3GB de espacio en disco para el modelo
+- **Backend**: FastAPI, LangChain, Chroma DB
+- **Frontend**: HTML5, CSS3, JavaScript moderno
+- **Modelo**: declare-lab/flan-alpaca-large (2.7GB)
+- **Base de Datos**: Chroma (vectorial)
+- **Despliegue**: Hugging Face Spaces
 
-## Instalación
+## 🚀 Uso en Hugging Face Spaces
+
+La aplicación está desplegada en [Hugging Face Spaces](https://huggingface.co/spaces/t0t01234/documentos-qa).
+
+1. Visita el espacio en Hugging Face
+2. Espera a que el contenedor se inicie (~2 minutos)
+3. Haz preguntas sobre los documentos cargados
+
+## 💻 Desarrollo Local
+
+### Requisitos
+
+- Python 3.10+
+- pip
+
+### Instalación
 
 1. Clona el repositorio:
 ```bash
-git clone <tu-repositorio>
-cd <tu-repositorio>
+git clone https://huggingface.co/spaces/t0t01234/documentos-qa
+cd documentos-qa
 ```
 
 2. Instala las dependencias:
@@ -40,57 +57,37 @@ cd <tu-repositorio>
 pip install -r requirements.txt
 ```
 
-3. Coloca tus documentos en la carpeta `app/documents/`. Se aceptan:
-   - PDFs (*.pdf)
-   - Archivos de texto (*.txt)
-   - Imágenes (*.jpg, *.png) - se extraerá el texto
-
-4. Procesa los documentos:
+3. Ejecuta la aplicación:
 ```bash
-python app/ingest.py
+python -m uvicorn app.app:app --reload
 ```
 
-## Uso Local
+4. Abre http://localhost:8000 en tu navegador
 
-1. Inicia el servidor:
-```bash
-cd app
-uvicorn app:app --reload
-```
+## 📝 Uso
 
-2. Abre tu navegador en `http://localhost:8000`
+1. La aplicación viene con documentos de ejemplo
+2. Escribe tu pregunta en el campo de texto
+3. Presiona "Preguntar" o Enter
+4. Espera la respuesta del modelo
 
-## Despliegue en Hugging Face Spaces
+## 🔧 Configuración
 
-1. Crea un nuevo Space en Hugging Face:
-   - Tipo: "Custom"
-   - Framework: "FastAPI"
+Las configuraciones principales están en `app/config.py`:
 
-2. Sube el código:
-```bash
-git remote add space https://huggingface.co/spaces/TU_USUARIO/TU_SPACE
-git push space main
-```
+- `MODEL_ID`: Modelo a utilizar
+- `MAX_LENGTH`: Longitud máxima de respuesta
+- `TEMPERATURE`: Temperatura para generación
 
-3. Configura los requisitos de hardware:
-   - RAM: Mínimo 4GB
-   - CPU: 2 vCPUs
+## 🤝 Contribuciones
 
-## Consejos
+Las contribuciones son bienvenidas. Por favor:
 
-- El modelo `flan-alpaca-large` requiere aproximadamente 2.7GB de RAM
-- La primera carga puede tardar unos minutos
-- Los documentos muy grandes se dividen automáticamente en chunks
-- La base de datos vectorial se guarda en `app/chroma_data/`
+1. Haz fork del repositorio
+2. Crea una rama para tu feature
+3. Haz commit de tus cambios
+4. Envía un pull request
 
-## Limitaciones
+## 📄 Licencia
 
-- Tamaño máximo de respuesta: 512 tokens
-- Tiempo de respuesta: 2-5 segundos por pregunta
-- El modelo funciona mejor con preguntas claras y específicas
-
-## Soporte
-
-Si encuentras algún problema, por favor abre un issue en el repositorio.
-
-Para más información sobre la configuración de Spaces, visita: https://huggingface.co/docs/hub/spaces-config-reference
+Este proyecto está bajo la Licencia MIT.

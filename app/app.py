@@ -6,12 +6,12 @@ import logging
 from pathlib import Path
 
 from langchain.chains import RetrievalQA
-from langchain.embeddings import HuggingFaceEmbeddings
-from langchain.vectorstores import Chroma
+from langchain_community.embeddings import HuggingFaceEmbeddings
+from langchain_community.vectorstores import Chroma
 from transformers import pipeline
 from langchain.llms import HuggingFacePipeline
 
-from config import STATIC_DIR, CHROMA_DIR, MODEL_ID, MAX_LENGTH, TEMPERATURE
+from app.config import STATIC_DIR, CHROMA_DIR, MODEL_ID, MAX_LENGTH, TEMPERATURE
 
 # Configurar logging
 logging.basicConfig(level=logging.INFO)
