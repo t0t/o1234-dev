@@ -6,7 +6,8 @@ colorTo: blue
 sdk: docker
 pinned: false
 app_port: 7860
-fullscreen: true
+fullscreen: false
+hide_header: true
 ---
 
 # O1234 Asistente de Documentación
