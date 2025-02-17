@@ -86,10 +86,9 @@ Respuesta detallada:"""
             chain_type="stuff",
             retriever=vectorstore.as_retriever(
                 search_kwargs={
-                    "k": 5,                    # Aumentar número de documentos recuperados
-                    "fetch_k": 10,             # Buscar en más documentos
-                    "maximal_marginal_relevance": True,  # Usar MMR para diversidad
-                    "filter": None             # Sin filtros adicionales
+                    "k": 5,                    # Número de documentos a recuperar
+                    "search_type": "mmr",      # Usar Maximum Marginal Relevance
+                    "score_threshold": 0.5,    # Umbral mínimo de similitud
                 }
             ),
             chain_type_kwargs={
@@ -97,7 +96,7 @@ Respuesta detallada:"""
                     template=PROMPT_TEMPLATE,
                     input_variables=["context", "question"]
                 ),
-                "verbose": True  # Para ver más detalles del proceso
+                "verbose": True
             },
             return_source_documents=True,
         )
