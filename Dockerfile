@@ -25,8 +25,9 @@ COPY ./app /code/app
 RUN mkdir -p /code/app/documents /code/app/chroma_data && \
     chmod -R 777 /code/app/documents /code/app/chroma_data
 
-# Configurar el modelo y la base de datos
-RUN python3 -c "from transformers import pipeline; pipeline('text2text-generation', model='declare-lab/flan-alpaca-large', device='cpu')"
+# Configurar el modelo y procesar documentos
+RUN python3 -c "from transformers import pipeline; pipeline('text2text-generation', model='declare-lab/flan-alpaca-large', device='cpu')" && \
+    cd /code && python3 -m app.ingest
 
 # Exponer el puerto que usa Hugging Face Spaces
 EXPOSE 7860

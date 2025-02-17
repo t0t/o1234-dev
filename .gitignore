@@ -38,5 +38,6 @@ Thumbs.db
 # Archivos de la aplicación
 app/documents/*
 !app/documents/sample.txt
+!app/documents/o4-document.pdf
 app/chroma_data/*
 !app/chroma_data/.gitkeep
