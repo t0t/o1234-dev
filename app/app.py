@@ -10,6 +10,7 @@ from langchain_community.embeddings import HuggingFaceEmbeddings
 from langchain_community.vectorstores import Chroma
 from langchain.chains import RetrievalQA
 from langchain.llms import HuggingFacePipeline
+from langchain.prompts import PromptTemplate
 
 from app.config import (
     STATIC_DIR,
@@ -60,13 +61,29 @@ async def startup_event():
             )
         )
 
-        # Crear la cadena de QA
+        # Crear la cadena de QA con prompt personalizado en español
+        PROMPT_TEMPLATE = """Por favor, proporciona una respuesta detallada y bien estructurada a la siguiente pregunta, basándote en el contexto proporcionado. 
+La respuesta debe estar en español y ser fácil de entender.
+
+Contexto: {context}
+
+Pregunta: {question}
+
+Respuesta detallada:"""
+
         qa_chain = RetrievalQA.from_chain_type(
             llm=llm,
             chain_type="stuff",
             retriever=vectorstore.as_retriever(
                 search_kwargs={"k": 3}
-            )
+            ),
+            chain_type_kwargs={
+                "prompt": PromptTemplate(
+                    template=PROMPT_TEMPLATE,
+                    input_variables=["context", "question"]
+                ),
+            },
+            return_source_documents=True,
         )
         
         logger.info("Sistema inicializado correctamente")
@@ -86,8 +103,19 @@ async def health_check():
 @app.post("/ask")
 async def ask_question(query: Query):
     try:
-        # Obtener respuesta
-        response = qa_chain.run(query.question)
+        # Obtener respuesta con documentos fuente
+        result = qa_chain({"query": query.question})
+        
+        # Formatear la respuesta
+        response = result["result"]
+        
+        # Agregar las fuentes si están disponibles
+        if "source_documents" in result and result["source_documents"]:
+            response += "\n\nFuentes consultadas:"
+            for doc in result["source_documents"]:
+                if hasattr(doc, "metadata") and "source" in doc.metadata:
+                    response += f"\n- {doc.metadata['source']}"
+        
         return {"response": response}
     except Exception as e:
         logger.error(f"Error al procesar la pregunta: {str(e)}")

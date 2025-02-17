@@ -10,8 +10,8 @@ DOCUMENTS_DIR = BASE_DIR / "documents"
 
 # Configuración del modelo
 MODEL_ID = "declare-lab/flan-alpaca-large"
-MAX_LENGTH = 512
-TEMPERATURE = 0.7
+MAX_LENGTH = 1024  # Aumentado para respuestas más largas
+TEMPERATURE = 0.8  # Ligeramente aumentado para más creatividad
 
 # Asegurarse de que los directorios existan
 STATIC_DIR.mkdir(exist_ok=True)
