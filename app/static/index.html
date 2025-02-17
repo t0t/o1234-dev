@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Asistente de Documentos</title>
+    <link rel="stylesheet" href="/static/styles.css">
+    <link rel="icon" type="image/x-icon" href="/static/favicon.ico">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <h1>📚 Asistente de Documentos</h1>
+        </div>
+    </nav>
+
+    <main class="container">
+        <div class="grid">
+            <!-- Área de Chat -->
+            <div class="chat-area">
+                <div id="chat-messages" class="messages">
+                    <div class="message system">
+                        ¡Hola! Puedo ayudarte a encontrar información en tus documentos. ¿Qué te gustaría saber?
+                    </div>
+                </div>
+                
+                <form id="question-form" class="question-form">
+                    <div class="input-group">
+                        <input type="text" 
+                               id="question-input" 
+                               placeholder="Escribe tu pregunta aquí..."
+                               required>
+                        <button type="submit" id="submit-btn">
+                            Preguntar
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Panel de Estado -->
+            <div class="status-panel">
+                <h2>Estado del Sistema</h2>
+                <div id="system-status">
+                    <p>✅ Sistema listo</p>
+                    <p>💾 Base de conocimiento cargada</p>
+                    <p>🤖 Modelo AI activo</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>Desarrollado con FastAPI, LangChain y Chroma</p>
+        </div>
+    </footer>
+
+    <script src="/static/main.js"></script>
+</body>
+</html>
