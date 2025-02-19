@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="es" class="h-full bg-gray-50">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>O1234 - Asistente de Documentación</title>
+    <link rel="icon" type="image/svg+xml" href="/img/favicon.svg">
+    <script type="module" src="/src/main.js"></script>
+</head>
+<body class="h-full">
+    <div id="app" class="min-h-full">
+        <nav class="bg-white shadow">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex items-center justify-between h-16">
+                    <div class="flex items-center">
+                        <div class="flex-shrink-0">
+                            <img class="h-8 w-auto" src="/img/logo.svg" alt="O1234">
+                            <span class="ml-2 text-xl font-semibold text-gray-900">O1234</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <main class="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
+            <div class="px-4 py-6 sm:px-0">
+                <div class="bg-white rounded-lg shadow p-6">
+                    <h2 class="text-2xl font-bold mb-4">Asistente de Documentación O1234</h2>
+                    
+                    <div class="mb-6">
+                        <label for="question" class="block text-sm font-medium text-gray-700">Tu pregunta sobre O1234</label>
+                        <div class="mt-1">
+                            <input type="text" name="question" id="question" 
+                                   class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md"
+                                   placeholder="Ej: ¿Qué es O1234?">
+                        </div>
+                    </div>
+
+                    <div class="flex justify-end">
+                        <button type="button" id="ask-button"
+                                class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                            Preguntar
+                        </button>
+                    </div>
+
+                    <div id="quick-questions" class="mt-6 grid grid-cols-1 gap-3 sm:grid-cols-2">
+                        <!-- Las preguntas rápidas se cargarán dinámicamente -->
+                    </div>
+
+                    <div id="response-container" class="mt-6">
+                        <div id="response" class="mb-4"></div>
+                        <div id="loading" class="hidden">
+                            <div class="animate-pulse flex space-x-4">
+                                <div class="flex-1 space-y-4 py-1">
+                                    <div class="h-4 bg-gray-200 rounded w-3/4"></div>
+                                    <div class="space-y-2">
+                                        <div class="h-4 bg-gray-200 rounded"></div>
+                                        <div class="h-4 bg-gray-200 rounded w-5/6"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="response" class="prose max-w-none">
+                            <!-- La respuesta se mostrará aquí -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    <script type="module" src="/src/main.js"></script>
+</body>
+</html>

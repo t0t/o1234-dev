@@ -55,10 +55,13 @@ def load_document(file_path: Path):
 def process_documents() -> None:
     """Procesa todos los documentos en el directorio de documentos."""
     try:
-        # Inicializar el modelo de embeddings
+        # Inicializar el modelo de embeddings con configuración optimizada
         embeddings = HuggingFaceEmbeddings(
             model_name="sentence-transformers/all-MiniLM-L6-v2",
-            model_kwargs={'device': 'cpu'}
+            model_kwargs={
+                'device': 'cpu',
+                'torch_dtype': 'float32'  # Ensure consistent dtype
+            }
         )
         
         # Cargar todos los documentos
