@@ -3,11 +3,12 @@
 @tailwind utilities;
 
 :root {
-    --primary-color: #4f46e5;
-    --secondary-color: #4338ca;
-    --background-color: #111827;
-    --text-color: #f9fafb;
-    --border-color: #374151;
+    --primary-color: #10b981;
+    --secondary-color: #059669;
+    --background-color: #1c1917;
+    --surface-color: #292524;
+    --text-color: #e7e5e4;
+    --border-color: #44403c;
     --success-color: #059669;
     --error-color: #dc2626;
     --spacing-xs: 0.25rem;
@@ -24,9 +25,10 @@
 }
 
 body {
-    font-family: Inter, system-ui, -apple-system, sans-serif;
+    font-family: system-ui, -apple-system, sans-serif;
     color: var(--text-color);
     background-color: var(--background-color);
+    line-height: 1.5;
 }
 
 .transition-all {
@@ -44,8 +46,8 @@ body {
 
 /* Navbar */
 .navbar {
-    background-color: var(--background-color);
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    background-color: var(--surface-color);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
     padding: var(--spacing-md) 0;
     margin-bottom: var(--spacing-xl);
 }
@@ -88,11 +90,12 @@ body {
 
 .message {
     margin-bottom: var(--spacing-md);
-    padding: var(--spacing-md);
+    padding: var(--spacing-lg);
     border-radius: 8px;
     max-width: 80%;
-    background-color: var(--background-color);
+    background-color: var(--surface-color);
     color: var(--text-color);
+    animation: fadeIn 0.3s ease-out;
 }
 
 .message.user {
@@ -102,12 +105,12 @@ body {
 }
 
 .message.assistant {
-    background-color: var(--background-color);
+    background-color: var(--surface-color);
     border: 1px solid var(--border-color);
 }
 
 .message.system {
-    background-color: var(--background-color);
+    background-color: var(--surface-color);
     border: 1px solid var(--border-color);
     color: var(--secondary-color);
 }
@@ -134,8 +137,17 @@ input[type="text"] {
     border: 1px solid var(--border-color);
     border-radius: 4px;
     font-size: 1rem;
-    background-color: var(--background-color);
+    background-color: var(--surface-color);
     color: var(--text-color);
+}
+
+input[type="text"]:hover {
+    background-color: #1c1917;
+}
+
+input[type="text"]:focus {
+    background-color: #1c1917;
+    border-color: var(--primary-color);
 }
 
 button {
@@ -146,15 +158,16 @@ button {
     padding: var(--spacing-md) var(--spacing-xl);
     cursor: pointer;
     font-weight: 500;
-    transition: background-color 0.2s;
+    transition: all 0.2s;
 }
 
-button:hover {
+button:hover:not(:disabled) {
     background-color: var(--secondary-color);
+    transform: translateY(-1px);
 }
 
 button:disabled {
-    background-color: var(--border-color);
+    opacity: 0.5;
     cursor: not-allowed;
 }
 
@@ -192,8 +205,4 @@ footer {
 @keyframes fadeIn {
     from { opacity: 0; transform: translateY(10px); }
     to { opacity: 1; transform: translateY(0); }
-}
-
-.message {
-    animation: fadeIn 0.3s ease-out;
 }
