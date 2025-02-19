@@ -46,7 +46,7 @@ document.addEventListener('DOMContentLoaded', () => {
 })
 
 // Configuración de la API
-const API_URL = 'http://127.0.0.1:8005';
+const API_URL = window.location.origin;  // Esto usará la URL base del servidor
 
 // Función principal para hacer preguntas
 async function askQuestion(question) {
