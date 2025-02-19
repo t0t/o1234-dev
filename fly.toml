@@ -1,4 +1,4 @@
-app = "o1234-backend"
+app = "o1234-dev"
 primary_region = "mad"
 
 [build]
