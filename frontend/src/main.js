@@ -107,7 +107,9 @@ document.addEventListener('DOMContentLoaded', () => {
 })
 
 // Configuración de la API
-const API_URL = 'http://localhost:8005';  // URL del backend en desarrollo
+const API_URL = window.location.hostname === 'localhost' 
+    ? 'http://localhost:8005'  // URL de desarrollo
+    : 'https://o1234-dev.fly.dev';  // URL de producción
 
 // Función principal para hacer preguntas
 async function askQuestion(question) {
