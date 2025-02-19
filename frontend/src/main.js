@@ -127,7 +127,7 @@ async function askQuestion(question) {
         logDebug('Sending request to server...');
         questionInput.disabled = true;
 
-        const response = await fetch('/o1234-qa/ask', {
+        const response = await fetch('/ask', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

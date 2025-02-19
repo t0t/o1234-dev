@@ -1,14 +1,13 @@
 import { defineConfig } from 'vite'
 
 export default defineConfig({
-  base: '/o1234-qa/',  // Para GitHub Pages
+  base: '/',
 
   server: {
     proxy: {
-      '/o1234-qa/ask': {
+      '/ask': {
         target: 'http://localhost:8000',
-        changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/o1234-qa/, '')
+        changeOrigin: true
       }
     }
   },

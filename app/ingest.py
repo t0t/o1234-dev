@@ -59,8 +59,7 @@ def process_documents() -> None:
         embeddings = HuggingFaceEmbeddings(
             model_name="sentence-transformers/all-MiniLM-L6-v2",
             model_kwargs={
-                'device': 'cpu',
-                'torch_dtype': 'float32'  # Ensure consistent dtype
+                'device': 'cpu'
             }
         )
         
