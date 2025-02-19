@@ -44,9 +44,12 @@ o1234-dev/
 
 1. Desarrollo en la carpeta `frontend/`
 2. Pruebas en local con `npm run dev`
+   - El backend debe estar corriendo en `localhost:8005`
+   - La API se conectará automáticamente a `http://localhost:8005` en desarrollo
 3. Cuando los cambios estén listos:
    - Ejecutar `npm run build` en `frontend/`
    - Los archivos compilados se generarán en `docs/`
+   - La API se conectará automáticamente a `https://o1234-dev.fly.dev` en producción
 4. Commit y push para desplegar en GitHub Pages
 
 ## 📦 Despliegue
