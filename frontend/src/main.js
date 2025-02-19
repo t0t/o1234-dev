@@ -127,7 +127,7 @@ async function askQuestion(question) {
         logDebug('Sending request to server...');
         questionInput.disabled = true;
 
-        const response = await fetch('/ask', {
+        const response = await fetch('http://localhost:8001/api/ask', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
