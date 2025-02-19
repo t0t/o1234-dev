@@ -46,7 +46,7 @@ document.addEventListener('DOMContentLoaded', () => {
 })
 
 // Configuración de la API
-const API_URL = window.location.origin;  // Esto usará la URL base del servidor
+const API_URL = 'https://o1234-dev.fly.dev';  // URL del backend en producción
 
 // Función principal para hacer preguntas
 async function askQuestion(question) {
