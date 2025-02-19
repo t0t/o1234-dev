@@ -1,7 +1,7 @@
 import { defineConfig } from 'vite'
 
 export default defineConfig({
-  base: '/',
+  base: '/o1234-dev/',
 
   server: {
     proxy: {
@@ -14,11 +14,13 @@ export default defineConfig({
   build: {
     outDir: 'dist',
     assetsDir: 'assets',
-    sourcemap: true
+    sourcemap: true,
+    emptyOutDir: true
   },
   preview: {
     port: 4173,
     strictPort: true,
     base: '/o1234-qa/'
-  }
+  },
+  plugins: []
 })
