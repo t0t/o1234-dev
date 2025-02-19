@@ -1,45 +1,79 @@
 <!DOCTYPE html>
-<html lang="es" class="h-full bg-gray-50">
+<html lang="es" class="h-full">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>O1234 - Asistente de Documentación</title>
     <link rel="icon" type="image/svg+xml" href="/img/favicon.svg">
-    <script type="module" src="/src/main.js"></script>
+    <link rel="stylesheet" href="/src/styles.css">
 </head>
-<body class="h-full">
-    <div id="app" class="min-h-full">
-        <nav class="bg-white shadow">
+
+<body class="h-full bg-gray-900">
+    <div id="app" class="min-h-full flex flex-col">
+        <nav class="bg-gray-800 shadow-lg">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="flex items-center justify-between h-16">
                     <div class="flex items-center">
-                        <div class="flex-shrink-0">
-                            <img class="h-8 w-auto" src="/img/logo.svg" alt="O1234">
-                            <span class="ml-2 text-xl font-semibold text-gray-900">O1234</span>
+                        <div class="flex-shrink-0 flex items-center">
+                            <svg width="40" height="40" viewBox="0 0 40 40" class="text-white logo-svg hero-logo">
+                                <g transform="matrix(0.79707,0,0,0.79707,4.26536,4.67272)">
+                                    <circle cx="10" cy="20" r="9.5" fill="none" stroke="currentColor"></circle>
+                                </g>
+                                <g transform="matrix(0.79707,0,0,0.79707,3.56175,4.67272)">
+                                    <circle cx="30" cy="20" r="9.5" fill="none" stroke="currentColor"></circle>
+                                </g>
+                                <g transform="matrix(0.779859,0,0,0.779859,4.27397,4.68132)">
+                                    <circle cx="20" cy="20" r="19.5" fill="none" stroke="currentColor"></circle>
+                                </g>
+                                <text x="4" y="22" class="logo-text" fill="white" stroke="black" stroke-width="0.5" style="font-size: 7px;">0</text>
+                                <text x="20" y="22" class="logo-text" fill="white" stroke="black" stroke-width="0.5" style="font-size: 7px;">1</text>
+                                <text x="20" y="36" class="logo-text" fill="white" stroke="black" stroke-width="0.5" style="font-size: 7px;">2</text>
+                                <text x="20" y="6" class="logo-text" fill="white" stroke="black" stroke-width="0.5" style="font-size: 7px;">3</text>
+                                <text x="36" y="22" class="logo-text" fill="white" stroke="black" stroke-width="0.5" style="font-size: 7px;">4</text>
+                            </svg>
+                            <span class="ml-2 text-xl font-semibold text-gray-100">O1234</span>
                         </div>
+                    </div>
+                    <div class="flex items-center">
+                        <a href="https://o1234.lovable.app/" 
+                           class="text-gray-300 hover:text-gray-100 transition-colors duration-200"
+                           target="_blank"
+                           rel="noopener noreferrer">
+                            O1234 App
+                            <span class="sr-only">Aplicación O1234 (se abre en una nueva ventana)</span>
+                        </a>
                     </div>
                 </div>
             </div>
         </nav>
 
-        <main class="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
+        <main class="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8 flex-grow">
             <div class="px-4 py-6 sm:px-0">
-                <div class="bg-white rounded-lg shadow p-6">
-                    <h2 class="text-2xl font-bold mb-4">Asistente de Documentación O1234</h2>
+                <div class="bg-gray-800 rounded-lg shadow-lg p-6">
+                    <h2 class="text-2xl font-bold mb-4 text-gray-100">Asistente de Documentación O1234</h2>
                     
                     <div class="mb-6">
-                        <label for="question" class="block text-sm font-medium text-gray-700">Tu pregunta sobre O1234</label>
-                        <div class="mt-1">
+                        <label for="question" class="block text-sm font-medium text-gray-300 mb-2">
+                            Tu pregunta sobre O1234
+                            <span class="text-xs text-gray-400 ml-1">(Presiona Enter para enviar)</span>
+                        </label>
+                        <div class="relative">
                             <input type="text" name="question" id="question" 
-                                   class="shadow-sm focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-lg transition-all duration-200 bg-gray-50 hover:bg-white"
-                                   placeholder="Ej: ¿Qué es O1234?">
+                                   class="shadow-sm focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 block w-full text-sm border-gray-600 rounded-lg transition-all duration-200 bg-gray-700 hover:bg-gray-600 pl-4 pr-10 py-3 text-gray-100 placeholder-gray-400"
+                                   placeholder="Ej: ¿Qué es O1234?" maxlength="280" aria-label="Tu pregunta">
+                            <div class="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none text-gray-400">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                    <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-8-3a1 1 0 00-.867.5 1 1 0 11-1.731-1A3 3 0 0113 8a3.001 3.001 0 01-2 2.83V11a1 1 0 11-2 0v-1a1 1 0 011-1 1 1 0 100-2zm0 8a1 1 0 100-2 1 1 0 000 2z" clip-rule="evenodd" />
+                                </svg>
+                            </div>
                         </div>
                     </div>
 
-                    <div class="flex justify-end">
-                        <button type="button" id="ask-button"
-                                class="inline-flex items-center px-6 py-3 border border-transparent text-sm font-medium rounded-lg shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition-all duration-200 transform hover:scale-105">
-                            Preguntar
+                    <div class="flex justify-end space-x-4 items-center">
+                        <span id="char-count" class="text-sm text-gray-400 hidden">0/280</span>
+                        <button type="button" id="ask-button" disabled
+                                class="inline-flex items-center px-6 py-3 border border-transparent text-sm font-medium rounded-lg shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition-all duration-200 transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 disabled:hover:bg-indigo-600">
+                            <span class="mr-2">Preguntar</span>
                         </button>
                     </div>
 
@@ -58,6 +92,21 @@
                 </div>
             </div>
         </main>
+
+        <footer class="bg-gray-800 mt-auto">
+            <div class="max-w-7xl mx-auto py-4 px-4 sm:px-6 lg:px-8">
+                <div class="flex justify-center">
+                    <a href="https://sergiofores.es" 
+                       class="text-gray-400 hover:text-gray-300 transition-colors duration-200"
+                       target="_blank"
+                       rel="noopener noreferrer">
+                        sergiofores.es
+                        <span class="sr-only">Sitio personal de Sergio Forés (se abre en una nueva ventana)</span>
+                    </a>
+                </div>
+            </div>
+        </footer>
     </div>
+    <script type="module" src="/src/main.js"></script>
 </body>
 </html>

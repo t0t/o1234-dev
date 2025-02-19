@@ -3,14 +3,13 @@
 @tailwind utilities;
 
 :root {
-    --primary-color: #2563eb;
-    --secondary-color: #1e40af;
-    --background-color: #f8fafc;
-    --text-color: #1e293b;
-    --border-color: #e2e8f0;
-    --success-color: #10b981;
-    --error-color: #ef4444;
-    
+    --primary-color: #4f46e5;
+    --secondary-color: #4338ca;
+    --background-color: #111827;
+    --text-color: #f9fafb;
+    --border-color: #374151;
+    --success-color: #059669;
+    --error-color: #dc2626;
     --spacing-xs: 0.25rem;
     --spacing-sm: 0.5rem;
     --spacing-md: 1rem;
@@ -45,7 +44,7 @@ body {
 
 /* Navbar */
 .navbar {
-    background-color: white;
+    background-color: var(--background-color);
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
     padding: var(--spacing-md) 0;
     margin-bottom: var(--spacing-xl);
@@ -54,6 +53,7 @@ body {
 .navbar h1 {
     font-size: 1.5rem;
     font-weight: 600;
+    color: var(--text-color);
 }
 
 /* Grid System */
@@ -72,7 +72,7 @@ body {
 
 /* Chat Area */
 .chat-area {
-    background: white;
+    background: var(--background-color);
     border-radius: 8px;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
     display: flex;
@@ -91,6 +91,8 @@ body {
     padding: var(--spacing-md);
     border-radius: 8px;
     max-width: 80%;
+    background-color: var(--background-color);
+    color: var(--text-color);
 }
 
 .message.user {
@@ -132,6 +134,8 @@ input[type="text"] {
     border: 1px solid var(--border-color);
     border-radius: 4px;
     font-size: 1rem;
+    background-color: var(--background-color);
+    color: var(--text-color);
 }
 
 button {
@@ -156,7 +160,7 @@ button:disabled {
 
 /* Status Panel */
 .status-panel {
-    background: white;
+    background: var(--background-color);
     padding: var(--spacing-lg);
     border-radius: 8px;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
@@ -165,6 +169,7 @@ button:disabled {
 .status-panel h2 {
     margin-bottom: var(--spacing-md);
     font-size: 1.25rem;
+    color: var(--text-color);
 }
 
 #system-status p {
@@ -172,6 +177,7 @@ button:disabled {
     display: flex;
     align-items: center;
     gap: var(--spacing-sm);
+    color: var(--text-color);
 }
 
 /* Footer */
