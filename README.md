@@ -1,71 +1,98 @@
-# O1234 - Sistema de Documentación Inteligente
+# O1234 - Asistente de Documentación
 
-Sistema de preguntas y respuestas basado en el marco simbólico O1234, utilizando OpenAI GPT para proporcionar respuestas contextualizadas.
+Sistema de preguntas y respuestas inteligente sobre el framework simbólico O1234.
 
-## Características
+## 🚀 Características
 
-- 🤖 Integración con OpenAI GPT-3.5
-- 🌐 Frontend moderno con Vite y TailwindCSS
-- ⚡ Backend rápido con FastAPI
-- 💡 Preguntas rápidas predefinidas
-- 🎨 Interfaz responsiva y amigable
+- Interfaz minimalista y moderna
+- Respuestas contextuales usando GPT-3.5-turbo
+- Preguntas rápidas predefinidas
+- Soporte para múltiples idiomas
+- Diseño responsive
 
-## Estructura del Proyecto
+## 🏗 Estructura del Proyecto
 
 ```
-├── backend/           # Servidor FastAPI
-│   ├── main.py       # Punto de entrada
-│   ├── model.py      # Lógica del modelo
-│   └── api.py        # Rutas de la API
-│
-└── frontend/         # Cliente web (Vite)
-    ├── src/          # Código fuente
-    ├── public/       # Archivos estáticos
-    └── index.html    # Página principal
+o1234-dev/
+├── frontend/           # Código fuente del frontend
+│   ├── src/           # Archivos fuente
+│   ├── public/        # Archivos estáticos
+│   └── index.html     # Plantilla HTML principal
+├── backend/           # API en FastAPI
+│   └── main.py        # Endpoints y lógica
+└── docs/             # Build del frontend para GitHub Pages
 ```
 
-## Requisitos
-
-- Python 3.12+
-- Node.js 18+
-- API key de OpenAI
-
-## Desarrollo Local
+## 💻 Desarrollo Local
 
 1. **Backend**
-```bash
-# Crear entorno virtual
-python -m venv venv
-source venv/bin/activate
-
-# Instalar dependencias
-pip install -r requirements.txt
-
-# Configurar API key
-export OPENAI_API_KEY="tu-api-key"
-
-# Iniciar servidor
-uvicorn main:app --reload --port 8005
-```
+   ```bash
+   cd backend
+   uvicorn main:app --reload --port 8005
+   ```
 
 2. **Frontend**
-```bash
-cd frontend
+   ```bash
+   cd frontend
+   npm install
+   npm run dev
+   ```
 
-# Instalar dependencias
-npm install
+   El frontend estará disponible en http://localhost:5173
 
-# Iniciar servidor de desarrollo
-npm run dev
-```
+## 🌐 Flujo de Trabajo
 
-## Despliegue
+1. Desarrollo en la carpeta `frontend/`
+2. Pruebas en local con `npm run dev`
+3. Cuando los cambios estén listos:
+   - Ejecutar `npm run build` en `frontend/`
+   - Los archivos compilados se generarán en `docs/`
+4. Commit y push para desplegar en GitHub Pages
 
-El proyecto está configurado para desplegarse en:
-- Backend: fly.io
-- Frontend: Netlify/Vercel/GitHub Pages
+## 📦 Despliegue
 
-## Licencia
+- **Frontend**: GitHub Pages
+  - URL: https://t0t.github.io/o1234-dev/
+  - Se despliega automáticamente desde la carpeta `docs/`
 
-Este proyecto es privado y confidencial.
-# o1234-dev
+- **Backend**: fly.io
+  - URL: https://o1234-dev.fly.dev
+  - Despliegue manual desde repositorio separado
+
+## 🔒 Variables de Entorno
+
+- `OPENAI_API_KEY`: Requerida para el backend
+  - En desarrollo: archivo `.env`
+  - En producción: secreto en fly.io
+
+## 🛠 Tecnologías
+
+- Frontend:
+  - Vite
+  - TailwindCSS
+  - JavaScript moderno
+  - HTML5
+
+- Backend:
+  - FastAPI
+  - OpenAI API
+  - Python 3.9+
+
+## 📝 Convenciones
+
+- Código en inglés
+- Comentarios en español
+- Commits en español
+- Semantic versioning
+
+## 🤝 Contribuir
+
+1. Fork del repositorio
+2. Crear rama feature (`git checkout -b feature/NuevaCaracteristica`)
+3. Commit (`git commit -m 'Añade nueva característica'`)
+4. Push (`git push origin feature/NuevaCaracteristica`)
+5. Pull Request
+
+## 📄 Licencia
+
+Este proyecto está bajo la Licencia MIT.
