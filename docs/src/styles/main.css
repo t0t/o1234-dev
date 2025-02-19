@@ -1,0 +1,70 @@
+/* Estilos personalizados adicionales a Tailwind */
+.prose {
+    line-height: 1.6;
+    color: #374151;
+}
+
+.prose p {
+    margin-bottom: 1em;
+}
+
+.prose ul {
+    list-style-type: disc;
+    padding-left: 1.5em;
+    margin-bottom: 1em;
+}
+
+.prose ol {
+    list-style-type: decimal;
+    padding-left: 1.5em;
+    margin-bottom: 1em;
+}
+
+.quick-question {
+    transition: all 0.2s ease-in-out;
+}
+
+.quick-question:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+/* Animación para las respuestas */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.fade-in {
+    animation: fadeIn 0.3s ease-out forwards;
+}
+
+/* Estilos para el modo oscuro */
+@media (prefers-color-scheme: dark) {
+    .dark\:bg-gray-900 {
+        background-color: #1a202c;
+    }
+    
+    .dark\:text-white {
+        color: #fff;
+    }
+}
+
+/* Grid responsivo de 12 columnas */
+.grid-12 {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 1rem;
+}
+
+@media (max-width: 768px) {
+    .grid-12 {
+        grid-template-columns: repeat(6, 1fr);
+    }
+}
+
+@media (max-width: 640px) {
+    .grid-12 {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
